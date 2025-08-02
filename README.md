@@ -18,7 +18,3 @@ El proyecto ha sido expandido para incluir nuevas clases y funcionalidades, demo
 2.  **Abrir en Eclipse/IDE:** Importa el proyecto clonado en tu IDE de preferencia (Eclipse, IntelliJ IDEA, etc.).
 3.  **Ejecutar la aplicación:** Abre el archivo `PruebaAudioVisual.java` y ejecuta el método `main`. La salida se mostrará en la consola.
 
-## Mejoras Adicionales
-- El código está estructurado de manera clara y organizada, con comentarios que explican la lógica de cada sección.
-- El uso de `ArrayList` en las relaciones permite una gestión dinámica de los objetos relacionados.
-- El proyecto cumple con la estructura de directorios estándar de Java (`src/main/java`).
