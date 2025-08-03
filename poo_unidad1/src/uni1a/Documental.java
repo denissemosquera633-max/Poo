@@ -6,7 +6,7 @@ import java.util.List;
 // Subclase Documental que extiende de ContenidoAudiovisual
 public class Documental extends ContenidoAudiovisual {
     private String tema;
-    private List<Investigador> investigadores; // Relación de agregación: un documental tiene investigadores
+    private final List<Investigador> investigadores; // Relación de agregación: un documental tiene investigadores
 
     public Documental(String titulo, int duracionEnMinutos, String genero, String tema) {
         super(titulo, duracionEnMinutos, genero);
@@ -32,21 +32,26 @@ public class Documental extends ContenidoAudiovisual {
     }
 
     @Override
-    public void mostrarDetalles() {
-        System.out.println("Detalles del Documental:");
-        System.out.println("ID: " + getId());
-        System.out.println("Título: " + getTitulo());
-        System.out.println("Duración en minutos: " + getDuracionEnMinutos());
-        System.out.println("Género: " + getGenero());
-        System.out.println("Tema: " + this.tema);
-        System.out.print("Investigadores: ");
+    public String mostrarDetalles() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Detalles del Documental:\n");
+        sb.append("ID: ").append(getId()).append("\n");
+        sb.append("Título: ").append(getTitulo()).append("\n");
+        sb.append("Duración en minutos: ").append(getDuracionEnMinutos()).append("\n");
+        sb.append("Género: ").append(getGenero()).append("\n");
+        sb.append("Tema: ").append(this.tema).append("\n");
+        sb.append("Investigadores: ");
         if (investigadores.isEmpty()) {
-            System.out.println("N/A");
+            sb.append("N/A\n");
         } else {
-            for (Investigador investigador : investigadores) {
-                System.out.print(investigador.getNombre() + ", ");
+            for (int i = 0; i < investigadores.size(); i++) {
+                sb.append(investigadores.get(i).getNombre());
+                if (i < investigadores.size() - 1) {
+                    sb.append(", ");
+                }
             }
-            System.out.println();
+            sb.append("\n");
         }
+        return sb.toString();
     }
 }
