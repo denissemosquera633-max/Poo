@@ -1,7 +1,6 @@
 package poo;
 
 import uni1a.*;
-import java.util.List;
 
 public class PruebaAudioVisual {
     public static void main(String[] args) {
@@ -17,10 +16,14 @@ public class PruebaAudioVisual {
         contenidos[0] = pelicula;
 
         // Serie de TV con sus temporadas
-        SerieDeTV serie = new SerieDeTV("Game of Thrones", 60, "Fantasía");
-        serie.agregarTemporada(new Temporada(1, 2011, 10));
-        serie.agregarTemporada(new Temporada(2, 2012, 10));
-        contenidos[1] = serie;
+        SerieDeTV serieTV = new SerieDeTV("Game of Thrones", 60, "Fantasía");
+
+        // Se crea la temporada con los parámetros en el orden correcto
+        Temporada temporada1 = new Temporada(1, 2011, 10);
+        serieTV.agregarTemporada(temporada1);
+
+        Temporada temporada2 = new Temporada(2, 2012, 10);
+        serieTV.agregarTemporada(temporada2);
 
         // Documental con sus investigadores
         Documental documental = new Documental("Cosmos", 45, "Ciencia", "Astronomía");
@@ -33,7 +36,7 @@ public class PruebaAudioVisual {
         contenidos[3] = cortometraje;
 
         // Podcast
-        Podcast podcast = new Podcast("La Historia con Egorov", 60, "Historia", "Javier Egorov", "YouTube");
+        Podcast podcast = new Podcast("La Historia con Egorov", 60, "Historia", "Javier Egorov", "Spotify");
         contenidos[4] = podcast;
 
         // Mostrar los detalles de cada contenido audiovisual
