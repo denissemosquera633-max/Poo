@@ -3,50 +3,39 @@ package uni1a;
 import java.util.ArrayList;
 import java.util.List;
 
-// Subclase Pelicula que extiende de ContenidoAudiovisual
 public class Pelicula extends ContenidoAudiovisual {
     private String estudio;
-    private List<Actor> actores; // Relación de agregación: una película tiene varios actores
+    private List<Actor> actores; // Agregación
 
-    public Pelicula(String titulo, int duracionEnMinutos, String genero, String estudio) {
-        super(titulo, duracionEnMinutos, genero);
+    public Pelicula(String titulo, int duracion, String genero, String estudio) {
+        super(titulo, duracion, genero);
         this.estudio = estudio;
         this.actores = new ArrayList<>();
     }
 
-    // Getters y setters
-    public String getEstudio() {
-        return estudio;
-    }
+    public String getEstudio() { return estudio; }
+    public List<Actor> getActores() { return actores; }
 
-    public void setEstudio(String estudio) {
-        this.estudio = estudio;
-    }
-
-    public List<Actor> getActores() {
-        return actores;
-    }
-
+    // Método para manejar la agregación (Clean Code - Nombres claros)
     public void agregarActor(Actor actor) {
         this.actores.add(actor);
     }
 
     @Override
-    public void mostrarDetalles() {
-        System.out.println("Detalles de la Película:");
-        System.out.println("ID: " + getId());
-        System.out.println("Título: " + getTitulo());
-        System.out.println("Duración en minutos: " + getDuracionEnMinutos());
-        System.out.println("Género: " + getGenero());
-        System.out.println("Estudio: " + this.estudio);
-        System.out.print("Actores: ");
-        if (actores.isEmpty()) {
-            System.out.println("N/A");
-        } else {
-            for (Actor actor : actores) {
-                System.out.print(actor.getNombre() + ", ");
-            }
-            System.out.println();
+    public String mostrarDetalles() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Título: %s (%s)\n", getTitulo(), getGenero()));
+        sb.append(String.format("Duración: %d min\n", getDuracionEnMinutos()));
+        sb.append(String.format("Estudio: %s\n", estudio));
+        sb.append("Actores: ");
+
+        // Uso de Streams para un código más funcional y limpio
+        actores.forEach(actor -> sb.append(actor.getNombre()).append(", "));
+
+        // Eliminar la última coma y espacio si hay actores
+        if (!actores.isEmpty()) {
+            sb.setLength(sb.length() - 2);
         }
+        return sb.toString();
     }
 }
